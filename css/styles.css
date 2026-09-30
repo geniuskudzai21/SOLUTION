@@ -1,0 +1,811 @@
+/* ------------------------------------------------------------------ *
+ * Cyber Shield Zimbabwe - styles
+ * ------------------------------------------------------------------ */
+
+:root {
+  /* Neutrals: graphite scale, no hue in the greys */
+  --bg: #0b0d12;
+  --pan: #11141b;
+  --pan2: #181c25;
+  --line: #232833;
+  --line2: #2f3543;
+  --ink: #e9ecf2;
+  --mut: #8b93a5;
+
+  /* Accents: one primary, one secondary, both AA on --bg */
+  --acc: #2f6feb;        /* primary fill */
+  --acc-tx: #7aa5f8;     /* accent for text and lines on dark */
+  --acc2: #14b8a6;       /* secondary accent */
+
+  /* Risk semantics only */
+  --yl: #d4a017;
+  --rd: #e04b5c;
+  --gn: #22a35c;
+
+  box-sizing: border-box;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 1rem/1.55 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+
+.mono {
+  font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+a {
+  color: var(--acc-tx);
+}
+
+/* --------------------------------- error banner */
+#err {
+  display: none;
+  background: var(--rd);
+  color: #fff;
+  padding: 9px 20px;
+  font: 500 .85rem 'IBM Plex Mono', monospace;
+}
+
+/* --------------------------------- sticky header */
+.hdr {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--bg);
+  padding-top: env(safe-area-inset-top, 0px);
+  border-bottom: 1px solid var(--line);
+}
+
+/* Both header rows track main's box exactly, so the brand, the tabs and the
+   content stay on one left edge at any width. */
+.top,
+nav {
+  width: 100%;
+  max-width: 1680px;
+  margin: 0 auto;
+  padding-left: clamp(14px, 2.4vw, 44px);
+  padding-right: clamp(14px, 2.4vw, 44px);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: .02em;
+}
+
+.brand em {
+  font-style: normal;
+  color: var(--acc-tx);
+}
+
+.brand small {
+  color: var(--acc2);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  font: 500 .7rem 'IBM Plex Mono', monospace;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  border: 1px solid var(--line2);
+  border-radius: 4px;
+  padding: 3px 8px;
+  color: var(--mut);
+  background: var(--pan);
+  white-space: nowrap;
+}
+
+.chip b {
+  color: var(--gn);
+  font-weight: 600;
+}
+
+.chip.off b {
+  color: var(--yl);
+}
+
+.chip.install {
+  cursor: pointer;
+  color: var(--acc-tx);
+  border-color: var(--acc-tx);
+  font: 600 .7rem 'IBM Plex Mono', monospace;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.chip.install:hover {
+  background: var(--pan2);
+}
+
+/* --------------------------------- tabs */
+nav {
+  display: flex;
+  gap: 4px;
+}
+
+nav button {
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: 10px 14px;
+  font: 600 .8rem inherit;
+  font-family: inherit;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--mut);
+  cursor: pointer;
+  transition: color .12s, border-color .12s;
+}
+
+nav button:hover {
+  color: var(--ink);
+}
+
+nav button[aria-current='true'] {
+  color: var(--acc-tx);
+  border-bottom-color: var(--acc-tx);
+}
+
+/* --------------------------------- layout */
+main {
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: 28px clamp(14px, 2.4vw, 44px) 64px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: 24px;
+  align-items: start;
+}
+
+/* Lab: four independent benches side by side instead of one long column.
+   300px is the floor that puts all four on one row from ~1280px up. */
+/* min() keeps a 300px floor from overflowing a 320px phone. */
+.lab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.lab-head {
+  grid-column: 1 / -1;
+}
+
+.lab-grid .panel > h3:first-of-type {
+  margin-top: 6px;
+}
+
+.view[hidden] {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  main {
+    padding-top: 20px;
+  }
+}
+
+/* Big displays: grow the base size so the whole interface scales up
+   instead of stranding a small layout in the middle of the screen. */
+@media (min-width: 1440px) {
+  :root {
+    font-size: 17px;
+  }
+
+  .grid {
+    gap: 26px;
+  }
+}
+
+@media (min-width: 1800px) {
+  :root {
+    font-size: 19px;
+  }
+
+  .grid {
+    grid-template-columns: minmax(0, 4.6fr) minmax(0, 6fr);
+  }
+}
+
+@media (min-width: 2400px) {
+  :root {
+    font-size: 23px;
+  }
+
+  main,
+  .top,
+  nav {
+    max-width: 2100px;
+  }
+}
+
+/* Result rows and sample cases get denser columns when there is room,
+   which is most of the scrolling on a laptop. */
+@media (min-width: 1180px) {
+  .samples {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
+    border-top: 0;
+  }
+
+  .samples button {
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 9px 10px;
+  }
+
+  .samples button:hover {
+    background: var(--pan2);
+    border-color: var(--line2);
+  }
+
+  .finds {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+    gap: 2px 10px;
+  }
+}
+
+/* --------------------------------- panels */
+.panel {
+  background: var(--pan);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 22px;
+  transition: border-color .15s;
+}
+
+.panel:hover {
+  border-color: var(--line2);
+}
+
+/* --------------------------------- motion */
+/* Short, single pass, and only on entry. Enough to feel alive, not enough
+   to distract from the verdict. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(9px);
+  }
+}
+
+.view:not([hidden]) > .grid > .panel,
+.view:not([hidden]) > .lab-grid > .panel,
+.view:not([hidden]) > .panel {
+  animation: rise .34s cubic-bezier(.22, .7, .3, 1) both;
+}
+
+.view:not([hidden]) > .lab-grid > .panel:nth-child(2) { animation-delay: .04s; }
+.view:not([hidden]) > .lab-grid > .panel:nth-child(3) { animation-delay: .08s; }
+.view:not([hidden]) > .lab-grid > .panel:nth-child(4) { animation-delay: .12s; }
+.view:not([hidden]) > .lab-grid > .panel:nth-child(5) { animation-delay: .16s; }
+
+.samples button,
+.finds li {
+  transition: background .13s, color .13s, border-color .13s;
+}
+
+.pri:active, .sec:active {
+  transform: translateY(1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}
+
+.tag {
+  font: 500 .72rem 'IBM Plex Mono', monospace;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--acc-tx);
+  margin: 0 0 14px;
+}
+
+h1 {
+  font-size: 1.7rem;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+}
+
+h3 {
+  font-size: .78rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--mut);
+  margin: 28px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+}
+
+.lead {
+  color: var(--mut);
+  margin: 10px 0 20px;
+  max-width: 56ch;
+}
+
+.meta {
+  color: var(--mut);
+  font-size: .85rem;
+  margin: 6px 0;
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  font-size: .78rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--mut);
+  margin: 16px 0 6px;
+}
+
+/* --------------------------------- controls */
+.seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--line2);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.seg button {
+  border: 0;
+  border-right: 1px solid var(--line2);
+  background: var(--pan2);
+  color: var(--mut);
+  padding: 7px 13px;
+  font: 500 .85rem inherit;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background .12s, color .12s;
+}
+
+.seg button:last-child {
+  border-right: 0;
+}
+
+.seg button:hover {
+  color: var(--ink);
+}
+
+.seg button[aria-pressed='true'] {
+  background: var(--acc);
+  color: #fff;
+  font-weight: 600;
+}
+
+textarea {
+  width: 100%;
+  min-height: 150px;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--line2);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--ink);
+  font: .88rem/1.6 'IBM Plex Mono', monospace;
+  resize: vertical;
+}
+
+textarea::placeholder {
+  color: #5d6577;
+}
+
+input[type='file'] {
+  display: block;
+  margin-top: 12px;
+  color: var(--mut);
+  font-size: .85rem;
+}
+
+input[type='file']::file-selector-button {
+  font: 600 .8rem inherit;
+  font-family: inherit;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--pan2);
+  border: 1px solid var(--line2);
+  border-radius: 5px;
+  padding: 7px 12px;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+button:focus-visible,
+textarea:focus-visible,
+input:focus-visible,
+li:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--acc-tx);
+  outline-offset: 2px;
+}
+
+.pri, .sec {
+  font: 600 .8rem inherit;
+  font-family: inherit;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .12s, border-color .12s, opacity .12s;
+}
+
+.pri {
+  background: var(--acc);
+  color: #fff;
+  border: 1px solid var(--acc);
+}
+
+.pri:hover:not(:disabled) {
+  background: #3d7bf5;
+}
+
+.sec {
+  background: var(--pan2);
+  color: var(--ink);
+  border: 1px solid var(--line2);
+}
+
+.sec:hover {
+  border-color: var(--acc-tx);
+  color: var(--acc-tx);
+}
+
+.pri:disabled {
+  opacity: .45;
+  cursor: default;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+/* --------------------------------- sample threats */
+.samples {
+  border-top: 1px solid var(--line);
+}
+
+.samples button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  padding: 9px 2px;
+  font: 500 .82rem 'IBM Plex Mono', monospace;
+  color: var(--mut);
+  cursor: pointer;
+  transition: color .12s;
+}
+
+.samples button:hover {
+  color: var(--acc-tx);
+}
+
+.samples button::before {
+  content: '› ';
+  color: var(--line2);
+}
+
+/* --------------------------------- progress log + empty state */
+.empty {
+  color: var(--mut);
+  font: .85rem 'IBM Plex Mono', monospace;
+}
+
+.empty::after {
+  content: '_';
+  animation: bl 1s steps(1) infinite;
+}
+
+@keyframes bl {
+  50% { opacity: 0; }
+}
+
+.log {
+  font: .78rem/1.7 'IBM Plex Mono', monospace;
+  color: var(--mut);
+}
+
+.log div::before {
+  content: '· ';
+  color: var(--acc2);
+}
+
+/* --------------------------------- verdict header */
+.top2 {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.gauge {
+  width: 12.5rem;
+  max-width: 100%;
+  flex: none;
+}
+
+.arc {
+  fill: none;
+  stroke-width: 15;
+  opacity: .2;
+}
+
+.arc.on {
+  opacity: 1;
+}
+
+.needle {
+  transform-origin: 100px 100px;
+  transition: transform .9s cubic-bezier(.2, .9, .3, 1.2);
+}
+
+.vd h2 {
+  font-size: 1.3rem;
+  line-height: 1.25;
+}
+
+.lvl {
+  font: 600 .75rem 'IBM Plex Mono', monospace;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin: 0 0 6px;
+}
+
+.High { color: var(--rd); }
+.Medium { color: var(--yl); }
+.Low { color: var(--gn); }
+
+/* --------------------------------- quoted message */
+.msg {
+  border: 1px solid var(--line2);
+  border-left: 3px solid var(--acc2);
+  border-radius: 0 6px 6px 0;
+  background: var(--bg);
+  padding: 12px 14px;
+  font: .85rem/1.65 'IBM Plex Mono', monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+mark {
+  background: var(--yl);
+  color: #10131a;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+mark.hot {
+  outline: 2px solid var(--acc2);
+  outline-offset: 1px;
+}
+
+mark sup {
+  font-weight: 700;
+  margin-left: 2px;
+  font-size: .65em;
+}
+
+/* --------------------------------- signals list */
+.finds {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.finds li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: default;
+}
+
+.finds li:hover {
+  background: var(--pan2);
+}
+
+.finds b {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  background: var(--acc2);
+  color: #06231f;
+  font: 700 .72rem 'IBM Plex Mono', monospace;
+  display: grid;
+  place-items: center;
+  margin-top: 1px;
+}
+
+/* --------------------------------- AI analyst panel */
+.ai {
+  border: 1px solid var(--line2);
+  border-left: 3px solid var(--acc);
+  border-radius: 0 6px 6px 0;
+  padding: 12px 14px;
+  background: var(--bg);
+}
+
+.ai p {
+  margin: 6px 0;
+}
+
+.ag {
+  font: 600 .72rem 'IBM Plex Mono', monospace;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.act {
+  font-size: 1.05rem;
+  font-weight: 500;
+  margin: 0 0 12px;
+  max-width: 54ch;
+}
+
+/* --------------------------------- incident card */
+.card {
+  border: 1px solid var(--line2);
+  border-radius: 8px;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.cardhead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 10px 14px;
+  background: var(--pan2);
+  border-bottom: 1px solid var(--line);
+}
+
+.ref {
+  font: 600 .78rem 'IBM Plex Mono', monospace;
+  letter-spacing: .06em;
+  color: var(--acc-tx);
+}
+
+.cardbody {
+  padding: 14px;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px 16px;
+  margin: 0 0 14px;
+  font-size: .84rem;
+}
+
+.facts dt {
+  color: var(--mut);
+}
+
+.facts dd {
+  margin: 0;
+  font-weight: 500;
+}
+
+.steps {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  font-size: .88rem;
+}
+
+.steps li {
+  margin-bottom: 5px;
+}
+
+/* --------------------------------- tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: .85rem;
+}
+
+td, th {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  color: var(--mut);
+  font-weight: 500;
+  font-size: .75rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.bignum {
+  font: 600 2rem 'IBM Plex Sans', system-ui, sans-serif;
+  letter-spacing: -.02em;
+  margin: 6px 0 4px;
+  color: var(--acc-tx);
+}
+
+/* --------------------------------- print the incident card */
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .hdr, #v-check > .grid > .panel:first-child, nav, #v-inbox, #v-proof, h3, .actions {
+    display: none !important;
+  }
+
+  .panel, .card, .msg, .ai {
+    border-color: #bbb;
+    background: #fff;
+  }
+
+  .card {
+    page-break-inside: avoid;
+  }
+}

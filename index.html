@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Cyber Shield Zimbabwe</title>
+  <meta name="description" content="Paste a suspicious SMS, email, WhatsApp message or voice note and get a verdict, the evidence behind it, and an incident report. Works offline.">
+  <meta name="theme-color" content="#0b0d12">
+  <meta name="color-scheme" content="dark">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Cyber Shield">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="err"></div>
+
+  <div class="hdr">
+    <header class="top">
+      <div class="brand">
+        <svg width="30" height="32" viewBox="0 0 30 32" aria-hidden="true">
+          <path d="M15 1 2 6v9c0 8 5 13 13 16 8-3 13-8 13-16V6z" fill="none" stroke="var(--acc-tx)" stroke-width="2.2"/>
+          <path d="M9 16l4 4 8-9" stroke="var(--acc2)" stroke-width="2.6" fill="none"/>
+        </svg>
+        <span>CYBER<em>//</em>SHIELD <small>ZIMBABWE</small></span>
+      </div>
+      <div class="chips">
+        <span class="chip">Rule engine <b>online</b></span>
+        <span class="chip off" id="aic">AI analyst <b>checking</b></span>
+        <span class="chip">Data <b>on-device</b></span>
+      </div>
+    </header>
+
+    <nav id="nav">
+      <button data-v="check" aria-current="true">Scanner</button>
+      <button data-v="inbox">Inbox sweep</button>
+      <button data-v="proof">Lab</button>
+    </nav>
+  </div>
+
+  <main>
+    <!-- ------------------------------ scanner -->
+    <section class="view" id="v-check">
+      <div class="grid">
+        <div class="panel">
+          <p class="tag">// INPUT TERMINAL</p>
+          <h1>Suspicious message? Scan it.</h1>
+          <p class="lead">Paste it. Two analysts, a rule engine and an AI, check it and tell you what to do.</p>
+
+          <label>Channel</label>
+          <div class="seg" id="chs"></div>
+
+          <label>Do you know the sender?</label>
+          <div class="seg" id="srs"></div>
+
+          <textarea id="t" aria-label="Message to scan" placeholder="Paste the SMS, email, WhatsApp or voice note text"></textarea>
+
+          <div class="actions">
+            <button class="pri" id="go">RUN SCAN</button>
+            <button class="sec" id="speak">SPEAK IT</button>
+          </div>
+
+          <p class="meta">The rule engine runs on your device. Only the AI second opinion sends text out, and only when you scan.</p>
+
+          <h3>Sample threats</h3>
+          <div class="samples" id="ex"></div>
+        </div>
+
+        <div class="panel" id="out">
+          <p class="tag">// THREAT REPORT</p>
+          <p class="empty">awaiting input</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------ inbox sweep -->
+    <section class="view" id="v-inbox" hidden>
+      <div class="panel">
+        <p class="tag">// INBOX SWEEP</p>
+        <h1>Sweep a whole inbox</h1>
+        <p class="lead">For schools, clinics and small businesses. One message per line, riskiest first.</p>
+
+        <textarea id="bulk" aria-label="Messages, one per line" placeholder="One message per line"></textarea>
+
+        <div class="actions">
+          <button class="pri" id="sweep">SWEEP</button>
+          <button class="sec" id="bulkSample">LOAD SAMPLE INBOX</button>
+        </div>
+
+        <div id="tr"></div>
+      </div>
+    </section>
+
+    <!-- ------------------------------ lab -->
+    <section class="view" id="v-proof" hidden>
+      <div class="lab-grid">
+        <div class="panel lab-head">
+          <p class="tag">// LAB</p>
+          <h1>Prove it works</h1>
+          <p class="lead">Four benches, all runnable on this machine, offline. Every figure below is produced by the same code path a live scan uses.</p>
+        </div>
+
+        <div class="panel">
+          <h3>Red team: AI attacks the engine</h3>
+          <p class="meta">The AI writes fresh Zimbabwean scams it has never shown the engine. The cached corpus runs offline; when the AI analyst is online it adds a live round on top.</p>
+          <div class="actions">
+            <button class="pri" id="rt">LAUNCH RED TEAM</button>
+          </div>
+          <div id="rto"></div>
+        </div>
+
+        <div class="panel">
+          <h3>Disguised scams</h3>
+          <p class="meta">Slang, numbers swapped for letters, fake lookalike websites.</p>
+          <div class="actions">
+            <button class="sec" id="stress">RUN TEST</button>
+          </div>
+          <div id="so"></div>
+        </div>
+
+        <div class="panel">
+          <h3>Self-evaluation on the official set</h3>
+          <p class="meta">All 100 rows released by NUST, scored locally.</p>
+          <div class="actions">
+            <button class="sec" id="eval">RUN SELF-EVALUATION</button>
+          </div>
+          <div id="eo"></div>
+        </div>
+
+        <div class="panel">
+          <h3>Your own dataset</h3>
+          <p class="meta">CSV with content, channel, threat_label, risk_level.</p>
+          <input type="file" id="f" accept=".csv">
+          <div id="bo"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/engine.js"></script>
+  <script src="js/dataset.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

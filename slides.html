@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cyber Shield Zimbabwe — presentation</title>
+<meta name="theme-color" content="#0b0d12">
+<link rel="icon" href="assets/icon-192.png" type="image/png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root {
+  --bg: #0b0d12;
+  --pan: #11141b;
+  --pan2: #181c25;
+  --line: #232833;
+  --line2: #2f3543;
+  --ink: #e9ecf2;
+  --mut: #8b93a5;
+  --acc: #2f6feb;
+  --acc-tx: #7aa5f8;
+  --acc2: #14b8a6;
+  --yl: #d4a017;
+  --rd: #e04b5c;
+  --gn: #22a35c;
+  --sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  box-sizing: border-box;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+/* --------------------------------- deck chrome */
+.bar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: var(--line);
+  z-index: 5;
+}
+
+.bar i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--acc);
+  transition: width .25s ease;
+}
+
+.hud {
+  position: fixed;
+  inset: auto 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 24px;
+  font: 500 .72rem var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--mut);
+  z-index: 5;
+}
+
+.hud kbd {
+  font: inherit;
+  border: 1px solid var(--line2);
+  border-radius: 4px;
+  padding: 1px 6px;
+  color: var(--ink);
+}
+
+/* --------------------------------- slides */
+.deck { height: 100%; }
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6vh 8vw 12vh;
+}
+
+.slide.on { display: flex; }
+
+.eyebrow {
+  font: 500 .8rem var(--mono);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--acc-tx);
+  margin: 0 0 20px;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 6.5vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -.03em;
+  font-weight: 600;
+  margin: 0 0 18px;
+}
+
+h2 {
+  font-size: clamp(1.7rem, 3.6vw, 2.8rem);
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  font-weight: 600;
+  margin: 0 0 22px;
+}
+
+p {
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
+  line-height: 1.6;
+  color: var(--mut);
+  max-width: 46em;
+  margin: 0 0 16px;
+}
+
+p strong, li strong { color: var(--ink); font-weight: 600; }
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-width: 46em;
+}
+
+li {
+  position: relative;
+  padding: 9px 0 9px 26px;
+  font-size: clamp(.95rem, 1.45vw, 1.15rem);
+  line-height: 1.55;
+  color: var(--mut);
+  border-bottom: 1px solid var(--line);
+}
+
+li::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 20px;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--acc2);
+}
+
+.lede { font-size: clamp(1.05rem, 1.9vw, 1.5rem); color: var(--ink); }
+
+.foot {
+  margin-top: 26px;
+  font: 500 .8rem var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--mut);
+}
+
+.teamname {
+  font: 600 clamp(.95rem, 1.5vw, 1.2rem) var(--mono);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--acc-tx);
+  margin: 30px 0 0;
+}
+
+.team {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.team span {
+  font: 500 .78rem var(--mono);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  border: 1px solid var(--line2);
+  border-radius: 5px;
+  padding: 6px 12px;
+  color: var(--mut);
+  background: var(--pan);
+}
+
+/* --------------------------------- figures */
+.nums {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 18px;
+  margin-top: 8px;
+}
+
+.num {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--pan);
+  padding: 22px;
+}
+
+.num b {
+  display: block;
+  font: 600 clamp(1.9rem, 4vw, 3rem) var(--sans);
+  letter-spacing: -.03em;
+  color: var(--acc-tx);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.num span {
+  font-size: .9rem;
+  color: var(--mut);
+  line-height: 1.45;
+  display: block;
+}
+
+.num.good b { color: var(--gn); }
+.num.warn b { color: var(--yl); }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 1000px;
+  font-size: clamp(.85rem, 1.15vw, 1rem);
+  margin-top: 6px;
+}
+
+td, th {
+  text-align: left;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+th {
+  font: 500 .74rem var(--mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--mut);
+}
+
+td.ok { color: var(--gn); font-weight: 600; }
+td.part { color: var(--yl); font-weight: 600; }
+
+.cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  max-width: 1100px;
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--pan);
+  padding: 20px;
+}
+
+.card h3 {
+  font: 500 .76rem var(--mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--acc2);
+  margin: 0 0 12px;
+}
+
+.card p { font-size: .95rem; margin: 0; }
+
+.shot {
+  border: 1px solid var(--line2);
+  border-radius: 8px;
+  background: var(--bg);
+  padding: 16px 18px;
+  font: 500 .85rem/1.7 var(--mono);
+  color: var(--mut);
+  margin-top: 6px;
+}
+
+.shot em { color: var(--acc-tx); font-style: normal; }
+.shot i { color: var(--acc2); font-style: normal; }
+
+/* --------------------------------- speaker notes */
+.notes {
+  display: none;
+  position: fixed;
+  inset: auto 0 0 0;
+  max-height: 42vh;
+  overflow: auto;
+  padding: 22px 24px 26px;
+  background: var(--pan2);
+  border-top: 1px solid var(--line2);
+  font-size: .95rem;
+  line-height: 1.6;
+  color: var(--mut);
+  z-index: 6;
+}
+
+body.notes .notes { display: block; }
+body.notes .hud { display: none; }
+body.notes .slide { padding-bottom: 46vh; }
+
+.notes h4 {
+  font: 500 .72rem var(--mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--acc-tx);
+  margin: 0 0 10px;
+}
+
+.notes p { font-size: .95rem; margin: 0 0 8px; }
+
+@media print {
+  html, body { overflow: visible; height: auto; background: #fff; color: #000; }
+  .bar, .hud, .notes { display: none !important; }
+  .deck { height: auto; }
+  .slide {
+    position: static;
+    display: flex !important;
+    page-break-after: always;
+    min-height: 100vh;
+    padding: 6vh 8vw;
+  }
+  p, li, .card p, td { color: #222; }
+  h1, h2, li strong { color: #000; }
+  .num, .card, .shot, table { border-color: #ccc; background: #fff; }
+}
+</style>
+</head>
+<body>
+
+<div class="bar"><i id="bar"></i></div>
+
+<main class="deck">
+
+  <!-- 1 -->
+  <section class="slide on">
+    <p class="eyebrow">NUST · Cyber Shield Zimbabwe Hackathon 2026</p>
+    <h1>Cyber&nbsp;Shield<br>Zimbabwe</h1>
+    <p class="lede">Don't make it easy for them: detecting and responding to cyber threats
+      on a phone, in Shona, with the network switched off.</p>
+    <p class="teamname">Team IdeaForge</p>
+    <div class="team">
+      <span>Dorothy Matembudze</span>
+      <span>Genius Chakanya</span>
+      <span>Dylan Zuze</span>
+      <span>Tatenda Murwira</span>
+      <span>Revaldon Sithole</span>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide">
+    <p class="eyebrow">The problem</p>
+    <h2>The scam is not in English</h2>
+    <ul>
+      <li>It arrives as a <strong>voice note from the boss</strong> asking for money urgently, or a
+        <strong>WhatsApp message in Shona slang</strong>.</li>
+      <li>The usual phishing filters are written for Western email, need a <strong>subscription</strong>,
+        and need the <strong>cloud</strong> — the one thing a parent will not have when it matters.</li>
+      <li>The cost of a wrong answer is not an inconvenience. It is someone's EcoCash balance.</li>
+      <li>The question is not <em>"is this phishing"</em>. It is <strong>"what do I do in the next
+        five minutes"</strong>.</li>
+    </ul>
+    <p class="foot">Target: the ordinary citizen. Also schools, clinics and small businesses.</p>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide">
+    <p class="eyebrow">How it works</p>
+    <h2>A verdict you can argue with</h2>
+    <div class="cols">
+      <div class="card">
+        <h3>01 · Read</h3>
+        <p>Normalise Unicode, strip zero-width characters, expand chat shorthand
+          (<em>ur</em> → your), undo leetspeak (<em>p1n</em> → pin, <em>acc0unt</em> → account).</p>
+      </div>
+      <div class="card">
+        <h3>02 · Weigh</h3>
+        <p>28 weighted patterns score five threat classes, so the class with the most
+          <strong>independent evidence</strong> wins — not whichever rule fired first.</p>
+      </div>
+      <div class="card">
+        <h3>03 · Resolve</h3>
+        <p>Every URL is checked against 11 real Zimbabwean domains for impersonation,
+          misspelling and lookalike subdomains.</p>
+      </div>
+      <div class="card">
+        <h3>04 · Explain</h3>
+        <p>Signals sum to a risk score out of 10, and each one reports the exact words that
+          triggered it — highlighted in the original message.</p>
+      </div>
+    </div>
+    <p class="foot">Deterministic. Inspectable. No model to download, no black box to trust.</p>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide">
+    <p class="eyebrow">Innovation 01</p>
+    <h2>The scan ends at a report, not a verdict</h2>
+    <div class="cols">
+      <div class="card">
+        <h3>Reference</h3>
+        <p><em>CS-ZW-184ZRBD</em> — a content fingerprint, so the same message always
+          produces the same reference and the case can be shown twice without changing.</p>
+      </div>
+      <div class="card">
+        <h3>Checklist</h3>
+        <p>Not "be careful". Concrete steps per threat: call the number inside your own app,
+          lock your mobile money if an OTP leaked.</p>
+      </div>
+      <div class="card">
+        <h3>Export</h3>
+        <p>Plain text for the bank, JSON as an evidence bundle, Web Share with a WhatsApp
+          hand-off. Generated in the browser — <strong>no server</strong>.</p>
+      </div>
+    </div>
+    <div class="shot">
+      CYBER INCIDENT REPORT<br>
+      Reference: <em>CS-ZW-184ZRBD</em><br>
+      Threat: Phishing · Risk: High · Score: 6.0 / 10<br>
+      Signals detected:<br>
+      &nbsp;&nbsp;1. Pretends to be cbz but the real site is cbz.co.zw<br>
+      &nbsp;&nbsp;2. Threatens to close or lock your account<br>
+      Recommended action:<br>
+      &nbsp;&nbsp;Do not click the link. Open the official website yourself.
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide">
+    <p class="eyebrow">Innovation 02</p>
+    <h2>Local language, and no network required</h2>
+    <div class="cols">
+      <div class="card">
+        <h3>Guidance in 3 languages</h3>
+        <p>English, Shona and Ndebele for every threat class and every benign verdict,
+          <strong>bundled in the app</strong>. Not machine translated at scan time.</p>
+      </div>
+      <div class="card">
+        <h3>Detection in 2 languages</h3>
+        <p>11 rules catch Shona and Ndebele requests — <em>ndiudze mharidzo</em>,
+          <em>chikomo chako</em>, <em>ngicela ikhasi</em>, <em>iphini yami</em>.
+          Split so money asks score as financial and PIN asks as identity.</p>
+      </div>
+      <div class="card">
+        <h3>Installable, offline</h3>
+        <p>Service-worker app shell. Load once, then it opens with the network off.
+          Under 60&nbsp;KB of code. The only network request is the font.</p>
+      </div>
+    </div>
+    <p class="foot">An English-only engine cannot catch the message your aunty actually receives.</p>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide">
+    <p class="eyebrow">Evidence</p>
+    <h2>We scored ourselves first</h2>
+    <div class="nums">
+      <div class="num good">
+        <b>100.0%</b>
+        <span>threat accuracy on all 100 rows of the NUST training dataset</span>
+      </div>
+      <div class="num warn">
+        <b>92.0%</b>
+        <span>risk-level accuracy on the same dataset</span>
+      </div>
+      <div class="num good">
+        <b>0</b>
+        <span>benign messages wrongly flagged as threats</span>
+      </div>
+      <div class="num">
+        <b>10/10</b>
+        <span>disguised scam set — slang, leetspeak, lookalike domains</span>
+      </div>
+    </div>
+    <p class="foot">Reproducible in the app: open the Lab tab. It scores itself on load.</p>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide">
+    <p class="eyebrow">Red team</p>
+    <h2>Then we attacked ourselves</h2>
+    <p>21 fresh Zimbabwean scams the engine was <strong>never tuned against</strong> — SMS
+      slang, leetspeak, lookalike bank domains, a fake Ministry of Health allowance,
+      boss voice-note transcripts. It catches <strong>18</strong>.</p>
+    <table>
+      <tr><th>The three it misses</th><th>Why</th></tr>
+      <tr><td>A voice note carrying only a pre-agreed code word</td><td>No text rule can see it. This is the argument for a family code word.</td></tr>
+      <tr><td>Two on the phishing / malicious-link boundary</td><td>The weight of the URL tips the class either way. A judgement call, not a bug.</td></tr>
+    </table>
+    <p class="foot">Those three are in the app on purpose. Naming your own limits is the point.</p>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide">
+    <p class="eyebrow">Where it goes next</p>
+    <h2>What we know is missing</h2>
+    <ul>
+      <li><strong>Full Shona and Ndebele prose.</strong> Today we match request phrases,
+        not whole sentences.</li>
+      <li><strong>URL reputation and number intelligence.</strong> Both need a live service,
+        and both would break the offline guarantee. Deliberate trade-off.</li>
+      <li><strong>A code-word checker.</strong> The one thing our own red team beat us on.</li>
+      <li><strong>Training on your own data.</strong> The Lab already scores any CSV with
+        <em>content, channel, threat_label, risk_level</em>.</li>
+    </ul>
+    <p class="foot">Four files. No build step. Open index.html — that is the install.</p>
+  </section>
+
+</main>
+
+<div class="hud">
+  <span><kbd>←</kbd> <kbd>→</kbd> navigate · <kbd>n</kbd> notes · <kbd>f</kbd> fullscreen</span>
+  <span id="count">1 / 8</span>
+</div>
+
+<div class="notes" id="notes">
+  <h4>Speaker notes</h4>
+  <div id="notesBody"></div>
+</div>
+
+<script>
+const NOTES = [
+  'Open on the title for two seconds and move. Do not read the slide. Say: "Cyber Shield Zimbabwe — we built a threat triage tool that runs entirely on a phone, in Shona, with the network off." Then go straight to the problem.',
+
+  'The strongest line here is the last one: the question is not "is this phishing", it is "what do I do in the next five minutes". That reframing is what the rest of the product is built around. Land it and move on.',
+
+  'Do not read all four cards. Say: "Four steps. It normalises the tricks, weighs 28 patterns across five threat classes, resolves every URL against 11 real Zimbabwean domains, and then tells you the exact words that gave it away." Emphasise independent evidence — that is why it is not a keyword list.',
+
+  'This is the innovation you demo live. Show the reference number, then the checklist, then click Evidence .json once so they see the file land. The line that lands: "a content fingerprint, so the same message always produces the same reference."',
+
+  'The differentiator versus every other team. Say plainly: guidance in three languages is translation; eleven detection rules in two languages is localisation. An English-only engine cannot catch the message your aunty actually receives.',
+
+  'Point at each figure. On 92%, do not rush past it — pre-empt it: "I will come back to that one." Land on the last line: it reproduces itself, open the Lab tab, it scores itself on load.',
+
+  'The credibility slide. Name all three misses out loud. The code-word one is the strongest story in the deck: it is the exact thing the engine cannot do, and it is why we tell people to agree a family code word.',
+
+  'Only if there is time. If you are running long, skip to a close. Never claim completeness — the brief says they are not looking for a complex platform, they are looking for something practical that works.'
+];
+
+const slides = [...document.querySelectorAll('.slide')];
+const bar = document.getElementById('bar');
+const count = document.getElementById('count');
+const notesBody = document.getElementById('notesBody');
+let i = 0;
+
+function show(n) {
+  i = Math.max(0, Math.min(slides.length - 1, n));
+  slides.forEach((s, j) => s.classList.toggle('on', j === i));
+  bar.style.width = ((i + 1) / slides.length) * 100 + '%';
+  count.textContent = (i + 1) + ' / ' + slides.length;
+  notesBody.innerHTML = '<p>' + NOTES[i] + '</p>';
+  location.hash = i + 1;
+}
+
+document.addEventListener('keydown', (e) => {
+  const k = e.key;
+  if (k === 'ArrowRight' || k === 'PageDown' || k === ' ') { e.preventDefault(); show(i + 1); }
+  else if (k === 'ArrowLeft' || k === 'PageUp') { e.preventDefault(); show(i - 1); }
+  else if (k === 'Home') show(0);
+  else if (k === 'End') show(slides.length - 1);
+  else if (k === 'n' || k === 'N') document.body.classList.toggle('notes');
+  else if (k === 'f' || k === 'F') {
+    if (document.fullscreenElement) document.exitFullscreen();
+    else document.documentElement.requestFullscreen();
+  } else if (/^[1-8]$/.test(k)) show(+k - 1);
+});
+
+document.addEventListener('click', (e) => {
+  if (e.target.closest('a')) return;
+  show(e.clientX < window.innerWidth * 0.25 ? i - 1 : i + 1);
+});
+
+show(Math.max(0, (+location.hash.slice(1) || 1) - 1));
+</script>
+</body>
+</html>
