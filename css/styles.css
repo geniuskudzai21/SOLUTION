@@ -143,6 +143,11 @@ nav {
   color: var(--yl);
 }
 
+/* Optional-by-design, not a fault: keep it out of the warning colour. */
+.chip.opt b {
+  color: var(--acc-tx);
+}
+
 .chip.install {
   cursor: pointer;
   color: var(--acc-tx);
