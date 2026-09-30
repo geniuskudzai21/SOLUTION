@@ -1,4 +1,4 @@
-# PITCH — Cyber Shield Zimbabwe
+# PITCH — IdeaForge · Cyber Shield Zimbabwe
 
 Two-minute script, mapped to the judging table in the official brief. Marks are from the
 brief. Scores are our estimates. Deck: `slides.html`.
