@@ -21,9 +21,9 @@
   --on-acc: #16130c;
   --acc-tx: #c6bda4;
   --acc2: #8d8168;
-  --yl: #d4a017;
-  --rd: #e04b5c;
-  --gn: #22a35c;
+  --yl: #d9a92c;
+  --rd: #f2636f;
+  --gn: #3ec46e;
   --sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
   box-sizing: border-box;
@@ -408,7 +408,7 @@ body.notes .slide { padding-bottom: 46vh; }
     <div class="cols">
       <div class="card">
         <h3>Reference</h3>
-        <p><em>CS-ZW-184ZRBD</em> — a content fingerprint, so the same message always
+        <p><em>CS-ZW-1WMAXAO</em> — a content fingerprint, so the same message always
           produces the same reference and the case can be shown twice without changing.</p>
       </div>
       <div class="card">
@@ -424,13 +424,14 @@ body.notes .slide { padding-bottom: 46vh; }
     </div>
     <div class="shot">
       CYBER INCIDENT REPORT<br>
-      Reference: <em>CS-ZW-184ZRBD</em><br>
-      Threat: Phishing · Risk: High · Score: 6.0 / 10<br>
+      Reference: <em>CS-ZW-1WMAXAO</em><br>
+      Threat: Dangerous link or file · Risk: High · Score: 9.0 / 10<br>
       Signals detected:<br>
-      &nbsp;&nbsp;1. Pretends to be cbz but the real site is cbz.co.zw<br>
-      &nbsp;&nbsp;2. Threatens to close or lock your account<br>
+      &nbsp;&nbsp;1. Contains a web link<br>
+      &nbsp;&nbsp;2. Asks you to log in<br>
+      &nbsp;&nbsp;3. Pretends to be zimra but the real site is zimra.co.zw<br>
       Recommended action:<br>
-      &nbsp;&nbsp;Do not click the link. Open the official website yourself.
+      &nbsp;&nbsp;Do not open the link or file. Delete it and warn others.
     </div>
   </section>
 
@@ -453,7 +454,7 @@ body.notes .slide { padding-bottom: 46vh; }
       <div class="card">
         <h3>Installable, offline</h3>
         <p>Service-worker app shell. Load once, then it opens with the network off.
-          Under 60&nbsp;KB of code. The only network request is the font.</p>
+          67&nbsp;KB of code, no build step, no dependencies.</p>
       </div>
     </div>
     <p class="foot">An English-only engine cannot catch the message your aunty actually receives.</p>
@@ -470,7 +471,8 @@ body.notes .slide { padding-bottom: 46vh; }
       </div>
       <div class="num warn">
         <b>92.0%</b>
-        <span>risk-level accuracy on the same dataset</span>
+        <span>risk-level accuracy. All 8 misses are the same message repeated, and the
+          threat type is still correct on it</span>
       </div>
       <div class="num good">
         <b>0</b>
@@ -535,11 +537,11 @@ const NOTES = [
 
   'Do not read all four cards. Say: "Four steps. It normalises the tricks, weighs 28 patterns across five threat classes, resolves every URL against 11 real Zimbabwean domains, and then tells you the exact words that gave it away." Emphasise independent evidence — that is why it is not a keyword list.',
 
-  'This is the innovation you demo live. Show the reference number, then the checklist, then click Evidence .json once so they see the file land. The line that lands: "a content fingerprint, so the same message always produces the same reference."',
+  'This is the innovation you demo live. Run the Fake ZIMRA sample first so the reference on screen is CS-ZW-1WMAXAO. Show the reference number, then the checklist, then click Evidence .json once so they see the file land. The line that lands: "a content fingerprint, so the same message always produces the same reference."',
 
   'The differentiator versus every other team. Say plainly: guidance in three languages is translation; eleven detection rules in two languages is localisation. An English-only engine cannot catch the message your aunty actually receives.',
 
-  'Point at each figure. On 92%, do not rush past it — pre-empt it: "I will come back to that one." Land on the last line: it reproduces itself, open the Lab tab, it scores itself on load.',
+  'Point at each figure. On 92%, do not rush past it — pre-empt it: "I will come back to that one." Land on the last line: it reproduces itself, open the Lab tab, it scores itself on load. If they ask to test on unseen data, Bench 04 takes their CSV and prints the accuracy on screen.',
 
   'The credibility slide. Name all three misses out loud. The code-word one is the strongest story in the deck: it is the exact thing the engine cannot do, and it is why we tell people to agree a family code word.',
 

@@ -8,7 +8,7 @@
  * Bump CACHE when shipping a new build.
  * ------------------------------------------------------------------ */
 
-const CACHE = 'cyber-shield-v1';
+const CACHE = 'cyber-shield-v2';
 
 const SHELL = [
   './',

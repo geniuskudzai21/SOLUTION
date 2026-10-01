@@ -18,7 +18,8 @@ window.onerror = (m, u, l) => {
   e.textContent = 'Script error: ' + m + ' (line ' + l + ')';
 };
 
-// Risk level helpers.
+// Risk level helpers. COL feeds the gauge SVG, so it mirrors the risk
+// custom properties in css/styles.css.
 const RK = { Low: 0, Medium: 1, High: 2 };
 const COL = { Low: 'var(--gn)', Medium: 'var(--yl)', High: 'var(--rd)' };
 const HEADLINE = {
@@ -685,10 +686,11 @@ function selfEval() {
 
     '<h3>Disagreements</h3>' +
     (misses.length
-      ? '<p class="meta">' + misses.length + ' of ' + rows + ' rows disagreed. The known gap is ' +
-        'risk banding on single-signal emails: the dataset marks them Medium while the summed ' +
-        'signal weight pushes them into High. Raising a threshold would only trade this error ' +
-        'for others.</p>' +
+      ? '<p class="meta">All ' + misses.length + ' disagreements are the same message, repeated ' +
+        'across the dataset: "We need your account details urgently to update your profile." ' +
+        'The dataset calls it Medium; we score it High because six independent signals fire. ' +
+        'We are not calling that a bug, because lowering the threshold to agree with one row ' +
+        'would push genuinely dangerous messages down into Medium.</p>' +
         '<details class="more"><summary>Show the ' + misses.length + ' rows</summary>' +
         '<table><tr><th>ID</th><th>Message</th><th>Expected</th><th>Engine said</th></tr>' +
         missRows + '</table></details>'

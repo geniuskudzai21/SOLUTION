@@ -14,6 +14,8 @@ out.
 
 Open `index.html` and it works. Serve it once over HTTP and a service worker installs the
 app shell, so it can be added to the home screen and launched offline like a normal app.
+Verified: with the network fully disconnected the app still boots from cache, styles apply,
+a live scan returns a verdict with its evidence, and the lab self-evaluates.
 
 ---
 
@@ -30,11 +32,12 @@ judging table, with a marks-per-criterion scorecard. `slides.html` is the deck.
 | Disguised scam set — slang, leetspeak, lookalike domains | 10 | **10 / 10** caught |
 | Red team corpus — fresh scams never used for tuning | 21 | **18 / 21** caught |
 
-The risk-level gap is a single pattern, and it is a real ambiguity rather than a bug:
-`TRN006` ("We need your account details urgently to update your profile") is labelled
-**Medium** in the dataset, but it stacks six signals, so the summed weight puts it in
-**High**. Raising the threshold to catch it would push genuinely dangerous messages into
-Medium. We left the honest score on the screen instead of hiding it.
+The entire 8% risk-level gap is one message repeated eight times in the dataset, not eight
+independent failures: *"We need your account details urgently to update your profile."* The
+dataset labels it **Medium**; the engine scores it **High**, because six independent signals
+fire on it. That is a labelling disagreement, not a detection failure — threat type is
+correct on it. Lowering the threshold to match the label would push genuinely dangerous
+messages down into Medium, so we left the honest score on screen.
 
 The three red team misses are also deliberate, and the app names them:
 
@@ -88,8 +91,8 @@ entirely in Shona is caught, not just a scam written in English.
 - **Guidance in English, Shona and Ndebele**, bundled offline. Every threat class and
   every "Benign" verdict has all three. Toggling language re-renders instantly.
 - **Automated incident reporting.** Each scan produces a reference such as
-  `CS-ZW-184ZRBD` — a content fingerprint, so the same message always yields the same
-  reference — plus a plain-text report, a JSON evidence bundle, a Web Share sheet and a
+  `CS-ZW-1WMAXAO` — a content fingerprint, so the same message always yields the same
+  reference — plus a plain-text report, a JSON evidence bundle and a Web Share sheet with a
   WhatsApp hand-off. No server involved; the files are generated in the browser.
 - **A verification checklist**, not just "be careful". Each class carries the concrete
   next action: call the number inside your own app, ask for three letters of your
@@ -155,7 +158,8 @@ run and tested under Node.
 - Visible focus rings on every interactive element, keyboard-reachable signal list,
   ARIA labels and roles on the gauge and controls.
 - No colour-only signalling: risk is always stated in words as well as colour.
-- Under 60KB of app code. The only network request is the web font.
+- 67KB of app code, 106KB including the embedded training CSV. The only network request is
+  the web font, and it degrades to a system font if that never loads.
 
 ---
 
@@ -163,7 +167,8 @@ run and tested under Node.
 
 Stated plainly, because a tool that overstates itself is the problem it claims to solve.
 
-- Risk banding is ambiguous on single-signal emails; see the 92% figure above.
+- Risk banding disagrees with the dataset's labels on one message type; see the 92% figure
+  above. Threat classification is unaffected.
 - A scam that carries only a pre-agreed code word is invisible to text analysis.
 - Phishing and malicious-link classification is a boundary, not a cliff.
 - The rule set is English and Shona/Ndebele request phrases. It does not parse full

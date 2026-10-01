@@ -21,10 +21,11 @@
   --acc-tx: #c6bda4;     /* cream for text and lines on the dark background */
   --acc2: #8d8168;       /* khaki, for small marks and underlines */
 
-  /* Risk semantics only */
-  --yl: #d4a017;
-  --rd: #e04b5c;
-  --gn: #22a35c;
+  /* Risk semantics only. Each has to clear 4.5:1 as text on --pan, so the
+     red is lightened from a fire-engine hue to something readable. */
+  --yl: #d9a92c;
+  --rd: #f2636f;
+  --gn: #3ec46e;
 
   box-sizing: border-box;
   padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -143,8 +144,9 @@ nav {
   font-weight: 600;
 }
 
-.chip.off b {
-  color: var(--yl);
+/* Offline is a bonus, not a warning, so it stays out of the risk colours. */
+.chip.offline-chip b {
+  color: var(--acc-tx);
 }
 
 

@@ -33,7 +33,7 @@ offending words highlighted in the original.
 Then press **RUN SCAN** once, so they see the signals being counted. That one screen covers
 four of the five required features in twenty seconds.
 
-**0:42 Innovation 1 — reporting** — click, don't describe. Show `CS-ZW-184ZRBD`, read one
+**0:42 Innovation 1 — reporting** — click, don't describe. Show `CS-ZW-1WMAXAO`, read one
 checklist line, then click **Evidence .json** so they watch the file land.
 
 > "Same message, same reference, every time — so the citizen can show you the same case
@@ -67,9 +67,11 @@ proves you were not overfitted to the 100 rows.
 > on the phishing versus malicious-link boundary, where the URL weight tips the class either
 > way."
 
-> "The 92% is one row. `TRN006` is labelled Medium in your dataset but stacks six signals,
-> so it reads High. Lowering the threshold would push dangerous messages into Medium. We'd
-> rather show you the disagreement than hide it."
+> "The 92% is one message, repeated eight times in your dataset: 'We need your account
+> details urgently to update your profile.' You label it Medium, we score it High, because
+> six independent signals fire on it. Threat type is still correct. Lowering our threshold to
+> match your label would push genuinely dangerous messages down into Medium, so we'd rather
+> show you the disagreement than hide it."
 Close: *"Four files. No build step. Open `index.html` and that is the install."* Then **stop
 talking.
 
