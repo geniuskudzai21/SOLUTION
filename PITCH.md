@@ -13,7 +13,7 @@ brief. Scores are our estimates. Deck: `slides.html`.
 | Usefulness in Zimbabwe  | 15      | 14–15      | Shona + Ndebele**detection**; 11 real ZW domains; offline; phone-first  |
 | Functionality           | 15      | 15          | Everything works with the network off                                   |
 | Innovation demo         | 20      | 18–20      | Fingerprinted incident report; 11 local-language rules; installable PWA |
-| Ease of use             | 5       | 5           | 360px+, keyboard, voice, no colour-only signalling                      |
+| Ease of use             | 5       | 5           | 360px+, keyboard-reachable, no colour-only signalling                   |
 | Presentation            | 10      | 9–10       | Rehearsed, one story, own limits named aloud                            |
 | **Total**               | **100** | **93–100** | Biggest risk: the hidden judge dataset is unseen                        |
 
@@ -55,8 +55,10 @@ costs more than the marks win. Prove it offline if there is a Q&A slot.
 > accuracy, 92% risk banding, zero benign messages flagged. Then we attacked ourselves —
 > 21 fresh Zimbabwean scams we never tuned against. It catches 18."
 
-If they offer held-out data: *"The Lab scores any CSV in the brief's format. Give me a set
-and I'll score it in front of you."*
+If they offer held-out data, take it: drop it into **Bench 04** and the accuracy figures
+appear on screen. *"The Lab scores any CSV in the brief's format. Give me a set and I'll
+score it in front of you."* This is the single strongest thing you can offer, because it
+proves you were not overfitted to the 100 rows.
 
 **1:45 The limits** — name all three misses. Do not rush this.
 
@@ -68,13 +70,12 @@ and I'll score it in front of you."*
 > "The 92% is one row. `TRN006` is labelled Medium in your dataset but stacks six signals,
 > so it reads High. Lowering the threshold would push dangerous messages into Medium. We'd
 > rather show you the disagreement than hide it."
-
 Close: *"Four files. No build step. Open `index.html` and that is the install."* Then **stop
 talking.
 
+---
 
-
-
+## Likely questions
 
 **
 
@@ -86,8 +87,8 @@ to a named rule. We won't hand a parent a bank decision we can't explain.
 **Overfitted to 100 rows?** It's a training set — a sanity check, not a claim. The honest
 number is 18 of 21 on data we never tuned against, plus 10 of 10 on disguised slang.
 
-**Does anything leave the device?** No. Only the optional AI second opinion, and the app is
-complete without it — which is why every demo works offline.
+**Does anything leave the device?** Nothing at all. There is no second opinion to fall back
+to, no upload, no server — which is exactly why every demo works offline.
 
 **Who wrote the Shona and Ndebele?** We did. A generic detector wouldn't know *chikomo chako*
 is your account and *ndiudze mharidzo* is I need details.

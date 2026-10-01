@@ -27,9 +27,8 @@
         </svg>
         <span>CYBER<em>//</em>SHIELD <small>ZIMBABWE</small></span>
       </div>
-      <div class="chips">
+      <div class="chips" id="chips">
         <span class="chip">Rule engine <b>online</b></span>
-        <span class="chip opt" id="aic">AI 2nd opinion <b>not required</b></span>
         <span class="chip">Data <b>on-device</b></span>
       </div>
     </header>
@@ -48,7 +47,7 @@
         <div class="panel">
           <p class="tag">// INPUT TERMINAL</p>
           <h1>Suspicious message? Scan it.</h1>
-          <p class="lead">Paste it. Two analysts, a rule engine and an AI, check it and tell you what to do.</p>
+          <p class="lead">Paste it. A rule engine checks it against known scam patterns and tells you what to do.</p>
 
           <label>Channel</label>
           <div class="seg" id="chs"></div>
@@ -60,10 +59,9 @@
 
           <div class="actions">
             <button class="pri" id="go">RUN SCAN</button>
-            <button class="sec" id="speak">SPEAK IT</button>
           </div>
 
-          <p class="meta">The rule engine runs on your device. Only the AI second opinion sends text out, and only when you scan.</p>
+          <p class="meta">The whole scan runs on your device. Nothing is sent anywhere.</p>
 
           <h3>Sample threats</h3>
           <div class="samples" id="ex"></div>
@@ -103,7 +101,7 @@
           <p class="lead">Four benches, all runnable on this machine, offline. Every figure below is produced by the same code path a live scan uses.</p>
           <ul class="lab-notes">
             <li>Benches <b>01</b> and <b>02</b> run themselves when you open this tab.</li>
-            <li>Bench <b>03</b> adds a live AI round only when the AI analyst is reachable.</li>
+            <li>Bench <b>03</b> attacks the engine with a corpus it was never tuned against.</li>
             <li>Bench <b>04</b> scores any CSV in the same column format.</li>
           </ul>
         </div>
@@ -130,8 +128,8 @@
 
         <section class="panel bench">
           <p class="bench-no">Bench 03</p>
-          <h2>Red team: AI attacks the engine</h2>
-          <p class="meta">The AI writes fresh Zimbabwean scams it has never shown the engine. The cached corpus runs offline; when the AI analyst is online it adds a live round on top.</p>
+          <h2>Red team: scams it was not tuned on</h2>
+          <p class="meta">A corpus the engine was never tuned against: fresh angles on the same tactics, plus near-misses that a careless engine would flag. Any miss here is a real gap, not a bad label.</p>
           <div class="actions">
             <button class="pri" id="rt">LAUNCH RED TEAM</button>
           </div>

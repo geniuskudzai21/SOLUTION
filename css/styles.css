@@ -12,10 +12,14 @@
   --ink: #e9ecf2;
   --mut: #8b93a5;
 
-  /* Accents: one primary, one secondary, both AA on --bg */
-  --acc: #2f6feb;        /* primary fill */
-  --acc-tx: #7aa5f8;     /* accent for text and lines on dark */
-  --acc2: #14b8a6;       /* secondary accent */
+  /* Chrome is deliberately achromatic: cream and khaki only, no hue. That leaves
+     red, amber and green to mean risk and nothing else, so a coloured pixel on
+     screen is always information rather than decoration. */
+  --acc: #d9d1ba;        /* cream fill for buttons and selected chips */
+  --acc-hi: #eae3cf;     /* hover, one step lighter than --acc */
+  --on-acc: #16130c;     /* text on any cream fill: 13.2:1, well past AAA */
+  --acc-tx: #c6bda4;     /* cream for text and lines on the dark background */
+  --acc2: #8d8168;       /* khaki, for small marks and underlines */
 
   /* Risk semantics only */
   --yl: #d4a017;
@@ -143,10 +147,7 @@ nav {
   color: var(--yl);
 }
 
-/* Optional-by-design, not a fault: keep it out of the warning colour. */
-.chip.opt b {
-  color: var(--acc-tx);
-}
+
 
 .chip.install {
   cursor: pointer;
@@ -265,6 +266,46 @@ main {
 .bench-out {
   margin-top: 16px;
   overflow-x: auto;
+}
+
+/* Passing rows and class breakdowns live here. Keeps the lab scannable:
+   the score and any misses are always on screen, the rest is one click away. */
+.more {
+  margin-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.more > summary {
+  padding: 9px 2px;
+  font: 500 .78rem 'IBM Plex Mono', monospace;
+  letter-spacing: .04em;
+  color: var(--mut);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.more > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Disclosure chevron, drawn as a character so it needs no extra markup. */
+.more > summary::before {
+  content: '+ ';
+  color: var(--acc2);
+}
+
+.more[open] > summary::before {
+  content: '\2212\00a0';
+}
+
+.more > summary:hover {
+  color: var(--acc-tx);
+}
+
+.more > summary:focus-visible {
+  outline: 2px solid var(--acc-tx);
+  outline-offset: 2px;
 }
 
 /* Sub-headings the results inject (h3) are section breaks inside a card, not
@@ -499,7 +540,7 @@ label {
 
 .seg button[aria-pressed='true'] {
   background: var(--acc);
-  color: #fff;
+  color: var(--on-acc);
   font-weight: 600;
 }
 
@@ -561,14 +602,16 @@ a:focus-visible {
   transition: background .12s, border-color .12s, opacity .12s;
 }
 
+/* Cream fill, so the label on top has to be the dark ink, not white. */
 .pri {
   background: var(--acc);
-  color: #fff;
+  color: var(--on-acc);
   border: 1px solid var(--acc);
 }
 
 .pri:hover:not(:disabled) {
-  background: #3d7bf5;
+  background: var(--acc-hi);
+  border-color: var(--acc-hi);
 }
 
 .sec {
@@ -755,25 +798,6 @@ mark sup {
   margin-top: 1px;
 }
 
-/* --------------------------------- AI analyst panel */
-.ai {
-  border: 1px solid var(--line2);
-  border-left: 3px solid var(--acc);
-  border-radius: 0 6px 6px 0;
-  padding: 12px 14px;
-  background: var(--bg);
-}
-
-.ai p {
-  margin: 6px 0;
-}
-
-.ag {
-  font: 600 .72rem 'IBM Plex Mono', monospace;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
-
 .act {
   font-size: 1.05rem;
   font-weight: 500;
@@ -877,7 +901,7 @@ th {
     display: none !important;
   }
 
-  .panel, .card, .msg, .ai {
+  .panel, .card, .msg {
     border-color: #bbb;
     background: #fff;
   }

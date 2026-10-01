@@ -71,9 +71,8 @@ download and no black box to trust.
 6. **Explain.** Every signal carries the sentence that triggered it and the exact text
    that matched, so the report can highlight it in the original message.
 
-An optional AI second opinion runs alongside when the host provides one. It is strictly
-additive: if the highest risk is taken and both analysts agree, say so, but the rule
-engine alone is a complete answer.
+There is no second opinion and no fallback service. One deterministic engine produces the
+entire verdict, which is why the demo cannot fail on venue wifi.
 
 ### Local-language detection, not just translation
 
@@ -97,13 +96,14 @@ entirely in Shona is caught, not just a scam written in English.
   account, lock your mobile money if an OTP leaked.
 - **Inbox sweep.** Paste one message per line for a school, clinic or SME. Risk-sorted
   table, and any row can be opened in the full scanner.
-- **Red team.** A cached corpus of fresh Zimbabwean scams the engine was never tuned
-  against runs offline. When an AI is available it writes a second, live round and scores
-  that too. The demo cannot break.
-- **Voice input and read-aloud** through the Web Speech API, for users who cannot or
-  will not type.
-- **Your own dataset.** Load any CSV with `content`, `channel`, `threat_label`,
-  `risk_level` and get accuracy figures for your own data.
+- **Red team.** A cached corpus of 21 fresh Zimbabwean scams the engine was never tuned
+  against. The misses are named on screen rather than hidden, because a tool that
+  overstates itself is the problem it claims to solve.
+- **Score any dataset, not just ours.** Bench 04 takes any CSV in the brief's column
+  format, which is how you score the judges' held-out set in front of them.
+- **Lab, four benches.** Disguised-scam scoring and self-evaluation run the moment you
+  open the tab, so a judge sees evidence without pressing anything. Red team and your own
+  CSV are one click each. Passing rows fold away; misses stay on screen.
 - **Printable.** The incident card prints cleanly on its own, so a user can keep a paper
   record.
 - **Installable and offline.** Served over HTTP, the app shell is precached and the tool
