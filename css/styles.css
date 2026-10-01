@@ -204,8 +204,8 @@ main {
   align-items: start;
 }
 
-/* Lab: three benches per row, the fourth wraps onto the next row.
-   Fixed 3 tracks instead of auto-fit so the bench count per row stays
+/* Lab: three benches per row on desktop, the wide one taking the full row
+   below. Fixed 3 tracks instead of auto-fit so the bench count per row stays
    stable instead of growing a 4th column on wide screens. */
 .lab-grid {
   display: grid;
@@ -218,8 +218,70 @@ main {
   grid-column: 1 / -1;
 }
 
-.lab-grid .panel > h3:first-of-type {
-  margin-top: 6px;
+/* Bench 04 is a file drop, not a score table, so it gets the whole row. */
+.bench-wide {
+  grid-column: 1 / -1;
+}
+
+.lab-notes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 4px 18px;
+  font-size: .85rem;
+  color: var(--mut);
+}
+
+.lab-notes b {
+  font: 600 .72rem 'IBM Plex Mono', monospace;
+  color: var(--acc2);
+}
+
+/* Each bench reads as a card: index, title, one line of why it exists. */
+.bench-no {
+  font: 500 .72rem 'IBM Plex Mono', monospace;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--acc2);
+  margin: 0 0 4px;
+}
+
+/* h2 inside a bench, so it does not pick up the h1 display size. */
+.bench h2 {
+  font-size: .95rem;
+  line-height: 1.35;
+  letter-spacing: -.005em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.bench .meta {
+  margin: 8px 0 0;
+}
+
+/* Output sits under the button. A narrow bench would otherwise crush the
+   result tables, so the block scrolls sideways instead of squashing columns. */
+.bench-out {
+  margin-top: 16px;
+  overflow-x: auto;
+}
+
+/* Sub-headings the results inject (h3) are section breaks inside a card, not
+   the full-width dividers used in the scanner panel, so tighten them. */
+.bench-out h3 {
+  font-size: .68rem;
+  margin: 20px 0 4px;
+  padding-bottom: 4px;
+}
+
+.bench-out .bignum {
+  font-size: 1.6rem;
+  margin-top: 0;
+}
+
+.bench-wide input[type='file'] {
+  margin-top: 16px;
 }
 
 .view[hidden] {

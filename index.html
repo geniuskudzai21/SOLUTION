@@ -101,41 +101,50 @@
           <p class="tag">// LAB</p>
           <h1>Prove it works</h1>
           <p class="lead">Four benches, all runnable on this machine, offline. Every figure below is produced by the same code path a live scan uses.</p>
+          <ul class="lab-notes">
+            <li>Benches <b>01</b> and <b>02</b> run themselves when you open this tab.</li>
+            <li>Bench <b>03</b> adds a live AI round only when the AI analyst is reachable.</li>
+            <li>Bench <b>04</b> scores any CSV in the same column format.</li>
+          </ul>
         </div>
 
-        <div class="panel">
-          <h3>Red team: AI attacks the engine</h3>
+        <section class="panel bench">
+          <p class="bench-no">Bench 01</p>
+          <h2>Disguised scams</h2>
+          <p class="meta">Slang, numbers swapped for letters, fake lookalike websites. The engine has to normalise wording before it can match a rule.</p>
+          <div class="actions">
+            <button class="sec" id="stress">RUN TEST</button>
+          </div>
+          <div class="bench-out" id="so"></div>
+        </section>
+
+        <section class="panel bench">
+          <p class="bench-no">Bench 02</p>
+          <h2>Self-evaluation on the official set</h2>
+          <p class="meta">All 100 rows released by NUST, scored locally through the same <span class="mono">analyse()</span> a live scan calls.</p>
+          <div class="actions">
+            <button class="sec" id="eval">RUN SELF-EVALUATION</button>
+          </div>
+          <div class="bench-out" id="eo"></div>
+        </section>
+
+        <section class="panel bench">
+          <p class="bench-no">Bench 03</p>
+          <h2>Red team: AI attacks the engine</h2>
           <p class="meta">The AI writes fresh Zimbabwean scams it has never shown the engine. The cached corpus runs offline; when the AI analyst is online it adds a live round on top.</p>
           <div class="actions">
             <button class="pri" id="rt">LAUNCH RED TEAM</button>
           </div>
-          <div id="rto"></div>
-        </div>
+          <div class="bench-out" id="rto"></div>
+        </section>
 
-        <div class="panel">
-          <h3>Disguised scams</h3>
-          <p class="meta">Slang, numbers swapped for letters, fake lookalike websites.</p>
-          <div class="actions">
-            <button class="sec" id="stress">RUN TEST</button>
-          </div>
-          <div id="so"></div>
-        </div>
-
-        <div class="panel">
-          <h3>Self-evaluation on the official set</h3>
-          <p class="meta">All 100 rows released by NUST, scored locally.</p>
-          <div class="actions">
-            <button class="sec" id="eval">RUN SELF-EVALUATION</button>
-          </div>
-          <div id="eo"></div>
-        </div>
-
-        <div class="panel">
-          <h3>Your own dataset</h3>
-          <p class="meta">CSV with content, channel, threat_label, risk_level.</p>
+        <section class="panel bench bench-wide">
+          <p class="bench-no">Bench 04</p>
+          <h2>Your own dataset</h2>
+          <p class="meta">CSV with content, channel, threat_label, risk_level. The file is read in the browser and never uploaded.</p>
           <input type="file" id="f" accept=".csv">
-          <div id="bo"></div>
-        </div>
+          <div class="bench-out" id="bo"></div>
+        </section>
       </div>
     </section>
   </main>
