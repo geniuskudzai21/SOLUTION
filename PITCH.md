@@ -5,16 +5,17 @@ brief. Scores are our estimates. Deck: `slides.html`.
 
 ## Scorecard
 
-| Criterion | Marks | Projected | What earns it |
-|---|---|---|---|
-| Threat detection | 20 | 18–20 | 100.0% on all 100 official rows; 10/10 disguised; 18/21 red team |
-| Classification and risk | 15 | 14–15 | 5 classes at 100%, risk bands at 92% |
-| Usefulness in Zimbabwe | 15 | 14–15 | Shona + Ndebele **detection**; 11 real ZW domains; offline; phone-first |
-| Functionality | 15 | 15 | Everything works with the network off |
-| Innovation demo | 20 | 18–20 | Fingerprinted incident report; 11 local-language rules; installable PWA |
-| Ease of use | 5 | 5 | 360px+, keyboard, voice, no colour-only signalling |
-| Presentation | 10 | 9–10 | Rehearsed, one story, own limits named aloud |
-| **Total** | **100** | **93–100** | Biggest risk: the hidden judge dataset is unseen |
+
+| Criterion               | Marks   | Projected   | What earns it                                                           |
+| ----------------------- | ------- | ----------- | ----------------------------------------------------------------------- |
+| Threat detection        | 20      | 18–20      | 100.0% on all 100 official rows; 10/10 disguised; 18/21 red team        |
+| Classification and risk | 15      | 14–15      | 5 classes at 100%, risk bands at 92%                                    |
+| Usefulness in Zimbabwe  | 15      | 14–15      | Shona + Ndebele**detection**; 11 real ZW domains; offline; phone-first  |
+| Functionality           | 15      | 15          | Everything works with the network off                                   |
+| Innovation demo         | 20      | 18–20      | Fingerprinted incident report; 11 local-language rules; installable PWA |
+| Ease of use             | 5       | 5           | 360px+, keyboard, voice, no colour-only signalling                      |
+| Presentation            | 10      | 9–10       | Rehearsed, one story, own limits named aloud                            |
+| **Total**               | **100** | **93–100** | Biggest risk: the hidden judge dataset is unseen                        |
 
 ## The 115 seconds
 
@@ -25,6 +26,7 @@ how serious, which words gave it away, and what to do."
 
 **0:12 Scanner (live)** — click *Fake ZIMRA website*, type nothing. Needle goes High,
 offending words highlighted in the original.
+
 > "It doesn't just say scam. Threat class, risk score out of ten, and the exact words that
 > triggered it — plus the real domain to compare against, zimra.co.zw."
 
@@ -33,12 +35,14 @@ four of the five required features in twenty seconds.
 
 **0:42 Innovation 1 — reporting** — click, don't describe. Show `CS-ZW-184ZRBD`, read one
 checklist line, then click **Evidence .json** so they watch the file land.
+
 > "Same message, same reference, every time — so the citizen can show you the same case
 > twice without it changing. Not 'be careful', the concrete next action. Text for the bank,
 > JSON as evidence, WhatsApp hand-off. Generated in the browser, so the message never leaves
 > the phone."
 
 **1:05 Innovation 2 — localisation** — toggle the language to Shona, then Ndebele.
+
 > "Guidance in three languages is translation. Eleven detection rules in two languages is
 > localisation — the engine catches the money request and the PIN request written in Shona."
 
@@ -46,6 +50,7 @@ Mention offline in one sentence. **Do not demo the install live** — a failure 
 costs more than the marks win. Prove it offline if there is a Q&A slot.
 
 **1:25 Evidence** — switch to the Lab tab; self-eval has already run.
+
 > "We scored ourselves first. All 100 rows, same code path as a live scan: 100% threat
 > accuracy, 92% risk banding, zero benign messages flagged. Then we attacked ourselves —
 > 21 fresh Zimbabwean scams we never tuned against. It catches 18."
@@ -54,6 +59,7 @@ If they offer held-out data: *"The Lab scores any CSV in the brief's format. Giv
 and I'll score it in front of you."*
 
 **1:45 The limits** — name all three misses. Do not rush this.
+
 > "It catches 18 of 21. One is a voice note carrying nothing but a pre-agreed code word — no
 > text rule can see that, which is why we tell people to agree a family code word. Two sit
 > on the phishing versus malicious-link boundary, where the URL weight tips the class either
@@ -64,11 +70,17 @@ and I'll score it in front of you."*
 > rather show you the disagreement than hide it."
 
 Close: *"Four files. No build step. Open `index.html` and that is the install."* Then **stop
-talking.**
+talking.
 
-## If you're asked
 
-**Rules not a model?** Deterministic, inspectable, no network, no GPU. Every verdict traces
+
+
+
+**
+
+**Rules not a model?** Deterministic,
+
+inspectable, no network, no GPU. Every verdict traces
 to a named rule. We won't hand a parent a bank decision we can't explain.
 
 **Overfitted to 100 rows?** It's a training set — a sanity check, not a claim. The honest
@@ -85,13 +97,3 @@ review queue for an elderly user. An APK is a packaging step, not a rewrite.
 
 **Rules compliance** (only if asked): we scan nothing and contact nothing. Synthetic dataset
 only, no real personal data. Only external dependencies are IBM Plex Sans and Mono, SIL OFL.
-
-## Before you present
-
-- [x] Team name **IdeaForge** and all five members on slide 1 of `slides.html`
-- [ ] Rehearsed at **115 seconds** with a timer, not 120
-- [ ] Sample message typed and ready to paste in case the click-through lags
-- [ ] Browser zoom 100% — judges at the back can't read 80%
-- [ ] Deck fullscreen-ready, notes on <kbd>n</kbd>
-- [ ] Three red-team misses and the `TRN006` trade-off learned cold, no notes
-- [ ] Deck on a USB stick *and* emailed as PDF backup
